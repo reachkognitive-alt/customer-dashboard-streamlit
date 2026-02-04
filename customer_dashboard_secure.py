@@ -665,9 +665,12 @@ def get_sheet():
         "https://www.googleapis.com/auth/spreadsheets",
         "https://www.googleapis.com/auth/drive"
     ]
-    creds = Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=scopes
+
+    creds = Credentials.from_service_account_info(
+        st.secrets["gcp_service_account"],
+        scopes=scopes
     )
+
     client = gspread.authorize(creds)
     sheet = client.open(SHEET_NAME).worksheet(WORKSHEET_NAME)
     return sheet
@@ -821,3 +824,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+#https://customerdashboardsecurepy-bctzt2zunuzdarxoqrszaj.streamlit.app/
